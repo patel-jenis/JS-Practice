@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./assets/css/bootsrap.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="row g-4" id="book-container">
+
+            </div>
+        </div>
+    </section>
+
+    <section class="my-5">
+        <h3 class="text-center my-5">Add Book</h3>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-6">
+                    <div>
+                        <label for="bookId">Book Id :</label>
+                        <input type="number" id="bookId" class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label for="bookName">Book Name :</label>
+                        <input type="text" id="bookName" class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label for="bookAuthor">Author Name :</label>
+                        <input type="text" id="bookAuthor" class="form-control">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label for="bookUrl">Book URL :</label>
+                        <input type="url" id="bookUrl" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="text-center">
+                        <button class="btn btn-dark" id="add-Book">Add Book</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+
+        function Showdetails() {
+            document.getElementById("book-container").innerHTML = "";
+
+            library.forEach(book => {
+                document.getElementById("book-container").innerHTML += `
+                <div class="col-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="${book.url}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${book.name}</h5>
+                            <p class="card-text text-primary"><strong><em>- ${book.author}</em></strong></p>
+                            <a href="#" class="btn btn-${book.isAvailable == true ? "success" : "danger"}">${book.isAvailable == true ? "Yes" : "No"}</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            });
+        }
+
+        let library = [
+            {
+                id: 123,
+                name: "Ramayan",
+                author: "Valmiki",
+                url: "https://www.jdandj.com/uploads/8/0/0/8/80083458/s611371146998849390_p82_i2_w1600.jpeg",
+                isAvailable: true,
+            },
+            {
+                id: 456,
+                name: "Mahabharat",
+                author: "Ved Vyas",
+                url: "https://www.jdandj.com/uploads/8/0/0/8/80083458/s611371146998849390_p82_i2_w1600.jpeg",
+                isAvailable: false,
+            },
+            {
+                id: 789,
+                name: "Bakor Patel",
+                author: "Vyas Ji",
+                url: "https://www.jdandj.com/uploads/8/0/0/8/80083458/s611371146998849390_p82_i2_w1600.jpeg",
+                isAvailable: true,
+            },
+            {
+                id: 1234,
+                name: "Bhagvad Geeta",
+                author: "Krishna",
+                url: "https://www.jdandj.com/uploads/8/0/0/8/80083458/s611371146998849390_p82_i2_w1600.jpeg",
+                isAvailable: false,
+            }
+        ]
+
+        Showdetails();
+
+        $("#add-Book").on("click", function () {
+            let name = document.getElementById("bookName").value;
+            let author = document.getElementById("bookAuthor").value;
+            let bookId = document.getElementById("bookId").value;
+            let bookUrl = document.getElementById("bookUrl").value;
+
+            if (name && author && bookId && bookUrl) {
+                let newBook = {
+                    id: bookId,
+                    name: name,
+                    author: author,
+                    url: bookUrl,
+                    isAvailable: true,
+                }
+
+                library.push(newBook);
+
+                document.getElementById("bookName").value = "";
+                document.getElementById("bookAuthor").value = "";
+                document.getElementById("bookId").value = "";
+                document.getElementById("bookUrl").value = "";
+
+                Showdetails();
+            } else {
+                alert("Please fill all the fields.");
+            }
+        })
+
+    </script>
+</body>
+
+</html>
