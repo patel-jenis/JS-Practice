@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="./assets/css/bootsrap.css">
+    <!-- Style CSS-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Hello</h1>
+        <p class="para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis corporis facilis iusto rem, enim et ab harum dicta esse atque commodi voluptate dolores. Saepe, eius commodi recusandae exercitationem velit possimus.</p>
+        <p class="para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis corporis facilis iusto rem, enim et ab harum dicta esse atque commodi voluptate dolores. Saepe, eius commodi recusandae exercitationem velit possimus.</p>
+        <div class="box"></div>
+        <button id="btn" class="mt-5">Submit</button>
+    </div>
+
+    <script src="./assets/js/bootsrap.js"></script>
+    <script>
+        let para = document.getElementsByClassName("para");
+        let dsc = Array.from(para);
+        console.log(dsc);
+
+        let btn = document.querySelector("#btn");
+        btn.addEventListener("click", () => {
+            let box = document.querySelector(".box");
+
+            let red = parseInt(Math.random() * 256);
+            let green = parseInt(Math.random() * 256);
+            let blue = parseInt(Math.random() * 256);
+
+            box.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+            box.classList.toggle("gol");
+        })
+    </script>
+</body>
+</html>
