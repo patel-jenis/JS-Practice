@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="name">
+    <br /><br />
+    <input type="email" id="mail">
+    <br /><br />
+    <button id="sub">Submit</button>
+
+    <script>
+        let name = document.getElementById("name");
+        let mail = document.getElementById("mail");
+
+        document.getElementById("sub").addEventListener("click", function() {
+            let obj = {
+                name: name.value,
+                mail: mail.value
+            }
+
+            let str = JSON.stringify(obj);
+
+            localStorage.setItem("User", str);
+        })
+    </script>
+</body>
+</html>
