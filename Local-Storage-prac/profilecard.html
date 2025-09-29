@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="profile-card">
+        <div class="profile-image">
+            <img src="https://i.pravatar.cc/150?img=32" alt="User" id="profileUrl" />
+        </div>
+        <h2 id="name">Lily Wilson</h2>
+        <p id="role">Frontend Developer</p>
+        <div class="social-icons">
+            <a href="#" id="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" id="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            const userObj = JSON.parse(localStorage.getItem("userData"));
+
+            document.getElementById("name").innerHTML = userObj.name;
+            document.getElementById("role").innerHTML = userObj.role; 
+            document.getElementById("profileUrl").src = userObj.profile; 
+            document.getElementById("facebook").href = userObj.facebook; 
+            document.getElementById("linkedin").href = userObj.linkedin;  
+        })
+    </script>
+
+</body>
+
+</html>

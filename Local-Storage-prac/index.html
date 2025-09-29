@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="">Name :</label>
+        <input type="text" name="" id="name">
+        <br /><br />
+        <label for="">Type :</label>
+        <input type="text" name="" id="role">
+        <br /><br />
+        <label for="">Profile Url :</label>
+        <input type="url" name="" id="profileurl">
+        <br /><br />
+        <label for="">Facebook :</label>
+        <input type="url" name="" id="facebook">
+        <br /><br />
+        <label for="">Linkedin :</label>
+        <input type="url" name="" id="linkedin">
+
+        <br /><br /><br />
+        <button id="btn">Get Card</button>
+    </div>
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            let name = document.getElementById("name").value;
+            let role = document.getElementById("role").value;
+            let profile = document.getElementById("profileurl").value;
+            let facebook = document.getElementById("facebook").value;
+            let linkedin = document.getElementById("linkedin").value;
+
+            const obj = {name, role, profile, facebook, linkedin};
+
+            localStorage.setItem("userData", JSON.stringify(obj));
+
+            window.location.pathname = "./profilecard.html"
+        })
+    </script>
+</body>
+</html>
