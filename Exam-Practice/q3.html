@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="my-4">
+                <label for="">Enter String :</label>
+                <input type="text" id="val">
+            </div>
+            <button class="btn btn-primary" id="submit-btn">Submit</button>
+            <h1 class="my-3" id="ans"></h1>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let submitbtn = document.getElementById("submit-btn");
+            let ans = document.getElementById("ans");
+            
+            submitbtn.addEventListener("click", function() {
+                let val = document.getElementById("val").value;
+
+                if(val.trim() === ""){
+                    ans.innerHTML = "Please Enter String....";
+                    return;
+                }
+                
+                let str = val.toLowerCase();
+                let str2 = str.split("").reverse().join("");
+
+                if(str === str2){
+                    ans.innerHTML = "String is Palindrome";
+                } else {
+                    ans.innerHTML = "String is not Palindrome";
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="my-4">
+                <label for="">Enter String :</label>
+                <input type="text" id="input1">
+            </br></br>
+                <label for="">Enter String :</label>
+                <input type="text" id="input2">
+            </div>
+            <button class="btn btn-primary" id="submit-btn">Submit</button>
+            <h1 class="my-3" id="ans"></h1>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let submitbtn = document.getElementById("submit-btn");
+            let ans = document.getElementById("ans");
+            
+            submitbtn.addEventListener("click", function() {
+                let input1 = document.getElementById("input1").value;
+                let input2 = document.getElementById("input2").value;
+
+                if(input1.trim() === "" || input2.trim() === ""){
+                    ans.innerHTML = "Please Enter String....";
+                    return;
+                }
+                
+                let str1 = input1.toLowerCase();
+                let str2 = input2.toLowerCase();
+
+                let sortstr1 = str1.split("").sort().join("");
+                let sortstr2 = str2.split("").sort().join("");
+
+                if(sortstr1 === sortstr2){
+                    ans.innerHTML = "String is Anagram";
+                } else {
+                    ans.innerHTML = "String is not Anagram";
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>
