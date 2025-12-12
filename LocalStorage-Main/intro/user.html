@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>User...</h1>
+
+    <h2 id="name"></h2>
+    <h2 id="mail"></h2>
+
+    <script>
+        let data = localStorage.getItem("user");
+        let obj = JSON.parse(data);
+
+        document.getElementById("name").innerHTML = `Name: ${obj.name}`;
+        document.getElementById("mail").innerHTML = `Mail: ${obj.mail}`;
+    </script>
+</body>
+</html>

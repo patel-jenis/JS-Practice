@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1 class="text-center my-5">Employee Details</h1>
+
+    <div class="container">
+        <table class="table table-hover table-striped-column">
+            <thead>
+                <tr>
+                    <th scope="col">Sr. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Departmnt</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="empData">
+
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="./index.html">+ Employee</a>
+    </div>
+
+    <script>
+        let employees = JSON.parse(localStorage.getItem("emplpoyees"));
+        let empData = document.getElementById("empData");
+
+        function editEmployee(editIdx) {
+            localStorage.setItem("editIdx", JSON.stringify(editIdx));
+            window.location.pathname = "./index.html";
+        }
+
+        function deleteEmployee(empId) {
+            const idx = employees.findIndex((emp) => {
+                return emp.id == empId;
+            });
+
+            employees.splice(idx, 1);
+            localStorage.setItem("emplpoyees", JSON.stringify(employees));
+            display();
+        }
+
+        function getDepartment(id) {
+            switch (id) {
+                case "1":
+                    return "Finance";
+                case "2":
+                    return "IT";
+                case "3":
+                    return "Computer";
+                case "4":
+                    return "Civil";
+            }
+        }
+
+        function display() {
+            empData.innerHTML = "";
+
+            employees.forEach((emp, idx) => {
+                empData.innerHTML += `
+                <tr>
+                    <th scope="row">${idx + 1}</th>
+                    <td>${emp.name}</td>
+                    <td>${emp.mail}</td>
+                    <td>${emp.salary}</td>
+                    <td>${getDepartment(emp.dept)}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editEmployee(${idx})"><i class="ri-pencil-line"></i></button>
+                        <button class="btn btn-danger" onclick="deleteEmployee(${emp.id})"><i class="ri-delete-bin-line"></i></button>
+                    </td>
+                </tr>
+            `
+            });
+        }
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            localStorage.removeItem("editIdx");
+            display();
+        })
+    </script>
+</body>
+
+</html>
