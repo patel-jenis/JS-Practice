@@ -8,6 +8,9 @@
 <body>
     
     <h1>Hello World</h1>
+    <div id="todo-container">
+
+    </div>
 
     <script>
         // Using AJAX
@@ -23,16 +26,60 @@
 
 
         // Using Fetch().Then()
-        const API_URL = "https://dog.ceo/api/breeds/image/random";
+        // const API_URL = "https://dog.ceo/api/breeds/image/random";
 
-        fetch(API_URL)  // Promise (Delay)
-        .then((res) => {
-            return res.json();   // Primise
-        })
-        .then((data) => {
+        // fetch(API_URL)  // Promise (Delay)
+        // .then((res) => {    // Handle Promises
+        //     if(res.status == 404) {
+        //         throw new Error("User Not Found");
+        //     }
+        //     return res.json();   // Primise
+        // })
+        // .then((data) => {
+        //     console.log(data);
+        // })
+        // .catch((err) => {       // Handle Errors
+        //     console.log(err.message);
+        // })
+        // .finally(() => {        // It runs everytime even if promise is fullfilled or rejected
+        //     console.log("Finally.......");
+        // })
+
+
+
+        // Async Await
+        let data;
+        let todoContainer = document.getElementById("todo-container");
+
+        // const fetchTodoes = async () => {}
+        async function fetchTodoes () {
+            const TODO_URL = "https://jsonplaceholder.typicode.com/todos";
+
+            try {
+                const res = await fetch(TODO_URL);
+                if(res.status === 404) {
+                    throw new Error("Invalid Endpoint.....");
+                    return;
+                }
+                
+                data = await res.json();
+                printTodoes(data.slice(0, 10));
+            } catch (err) {
+                console.log(err.message);
+                todoContainer.innerHTML = "Something Went Wrong..."
+            } finally {
+                console.log("Finally.....");
+            }
+
             console.log(data);
-        })
+        }
+        fetchTodoes();
 
+        function printTodoes (arr) {
+            arr.forEach((data) => {
+                todoContainer.innerHTML += `<h1>${data.id}. ${data.title}</h1>`
+            })
+        }
     </script>
 
 </body>
