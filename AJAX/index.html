@@ -10,16 +10,28 @@
     <h1>Hello World</h1>
 
     <script>
-        const xhr = new XMLHttpRequest();
+        // Using AJAX
+        // const xhr = new XMLHttpRequest();
+        // xhr.open("GET", 'https://official-joke-api.appspot.com/random_joke');
 
-        xhr.open("GET", 'https://official-joke-api.appspot.com/random_joke');
+        // xhr.onload = () => {
+        //     let joke = JSON.parse(xhr.response);
+        //     console.log(joke);
+        // }
+        // xhr.send();
 
-        xhr.onload = () => {
-            let joke = JSON.parse(xhr.response);
-            console.log(joke);
-        }
 
-        xhr.send();
+
+        // Using Fetch().Then()
+        const API_URL = "https://dog.ceo/api/breeds/image/random";
+
+        fetch(API_URL)  // Promise (Delay)
+        .then((res) => {
+            return res.json();   // Primise
+        })
+        .then((data) => {
+            console.log(data);
+        })
 
     </script>
 
